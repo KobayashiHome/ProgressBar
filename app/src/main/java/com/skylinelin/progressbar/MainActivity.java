@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG ="MainActivity" ;
     private ProgressBar mProgressBar;
     private SeekBar mSeekBar;
-    private TextView mTextView;
+    private TextView mTextView,mTextView2;
+    private RatingBar mRatingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.progress_bar);
         mSeekBar = findViewById(R.id.seek_bar);
         mTextView = findViewById(R.id.text_view);
+        mRatingBar = findViewById(R.id.rating_bar);
+        mTextView2 = findViewById(R.id.text_view2);
         //mProgressBar事件
         new Thread(new Runnable() {
             @Override
@@ -84,6 +88,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+
+        mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                mTextView2.setText(rating+" ");
             }
         });
     }
